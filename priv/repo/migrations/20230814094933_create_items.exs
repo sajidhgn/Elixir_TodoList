@@ -6,11 +6,9 @@ defmodule TodoList.Repo.Migrations.CreateItems do
       add :id, :uuid, primary_key: true
       add :content, :string
       add :completed, :boolean, default: false, null: false
-      add :list_id, references(:lists, type: :uuid, column: :uuid)
+      add :list_id, references(:lists, type: :uuid, foreign_key: :uuid)
 
       timestamps()
     end
-
-    create unique_index(:items, [:list_id])
   end
 end
