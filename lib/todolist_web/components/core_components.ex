@@ -1,4 +1,4 @@
-defmodule TodolistWeb.CoreComponents do
+defmodule TodoListWeb.CoreComponents do
   @moduledoc """
   Provides core UI components.
 
@@ -17,7 +17,7 @@ defmodule TodolistWeb.CoreComponents do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  import TodolistWeb.Gettext
+  import TodoListWeb.Gettext
 
   @doc """
   Renders a modal.
@@ -650,9 +650,9 @@ defmodule TodolistWeb.CoreComponents do
     # with our gettext backend as first argument. Translations are
     # available in the errors.po file (as we use the "errors" domain).
     if count = opts[:count] do
-      Gettext.dngettext(TodolistWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(TodoListWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(TodolistWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(TodoListWeb.Gettext, "errors", msg, opts)
     end
   end
 

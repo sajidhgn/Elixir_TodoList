@@ -1,5 +1,5 @@
-defmodule TodolistWeb.PageController do
-  use TodolistWeb, :controller
+defmodule TodoListWeb.PageController do
+  use TodoListWeb, :controller
 
   def home(conn, _params) do
     # The home page is often custom made,

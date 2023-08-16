@@ -1,12 +1,12 @@
-defmodule Todolist.Lists do
+defmodule TodoList.Lists do
   @moduledoc """
   The Lists context.
   """
 
   import Ecto.Query, warn: false
-  alias Todolist.Repo
+  alias TodoList.Repo
 
-  alias Todolist.Lists.List
+  alias TodoList.Lists.List
 
   @doc """
   Returns the list of lists.

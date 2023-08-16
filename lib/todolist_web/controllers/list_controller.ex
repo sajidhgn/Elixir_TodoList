@@ -1,10 +1,10 @@
-defmodule TodolistWeb.ListController do
-  use TodolistWeb, :controller
+defmodule TodoListWeb.ListController do
+  use TodoListWeb, :controller
 
-  alias Todolist.Lists
-  alias Todolist.Lists.List
+  alias TodoList.Lists
+  alias TodoList.Lists.List
 
-  action_fallback TodolistWeb.FallbackController
+  action_fallback TodoListWeb.FallbackController
 
   def index(conn, _params) do
     lists = Lists.list_lists()

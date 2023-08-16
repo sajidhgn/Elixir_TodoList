@@ -1,7 +1,7 @@
-defmodule Todolist.ListsFixtures do
+defmodule TodoList.ListsFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Todolist.Lists` context.
+  entities via the `TodoList.Lists` context.
   """
 
   @doc """
@@ -14,7 +14,7 @@ defmodule Todolist.ListsFixtures do
         archived: true,
         title: "some title"
       })
-      |> Todolist.Lists.create_list()
+      |> TodoList.Lists.create_list()
 
     list
   end

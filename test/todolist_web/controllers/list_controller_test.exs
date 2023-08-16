@@ -1,9 +1,9 @@
-defmodule TodolistWeb.ListControllerTest do
-  use TodolistWeb.ConnCase
+defmodule TodoListWeb.ListControllerTest do
+  use TodoListWeb.ConnCase
 
-  import Todolist.ListsFixtures
+  import TodoList.ListsFixtures
 
-  alias Todolist.Lists.List
+  alias TodoList.Lists.List
 
   @create_attrs %{
     archived: true,

@@ -1,4 +1,4 @@
-defmodule Todolist.Items.Item do
+defmodule TodoList.Items.Item do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -9,8 +9,8 @@ defmodule Todolist.Items.Item do
     field :completed, :boolean, default: false
     field :content, :string
 
-    belongs_to(:list, Todolist.Lists.List, foreign_key: :list_id, references: :id, primary_key: true)
-    
+    belongs_to(:list, TodoList.Lists.List, foreign_key: :list_id, references: :id, primary_key: true)
+
     timestamps()
   end
 

@@ -1,12 +1,12 @@
-defmodule Todolist.ItemsTest do
-  use Todolist.DataCase
+defmodule TodoList.ItemsTest do
+  use TodoList.DataCase
 
-  alias Todolist.Items
+  alias TodoList.Items
 
   describe "items" do
-    alias Todolist.Items.Item
+    alias TodoList.Items.Item
 
-    import Todolist.ItemsFixtures
+    import TodoList.ItemsFixtures
 
     @invalid_attrs %{completed: nil, content: nil, list_id: nil}
 

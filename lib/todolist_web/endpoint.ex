@@ -1,5 +1,5 @@
-defmodule TodolistWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :todolist
+defmodule TodoListWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :TodoList
 
   plug CORSPlug
 
@@ -9,7 +9,7 @@ defmodule TodolistWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_todolist_key",
+    key: "_TodoList_key",
     signing_salt: "zeWzkbzW",
     same_site: "Lax"
   ]
@@ -22,9 +22,9 @@ defmodule TodolistWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :todolist,
+    from: :TodoList,
     gzip: false,
-    only: TodolistWeb.static_paths()
+    only: TodoListWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -32,7 +32,7 @@ defmodule TodolistWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :todolist
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :TodoList
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -50,5 +50,5 @@ defmodule TodolistWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug TodolistWeb.Router
+  plug TodoListWeb.Router
 end

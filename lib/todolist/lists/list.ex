@@ -1,4 +1,4 @@
-defmodule Todolist.Lists.List do
+defmodule TodoList.Lists.List do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -7,7 +7,7 @@ defmodule Todolist.Lists.List do
   schema "lists" do
     field :archived, :boolean, default: false
     field :title, :string
-    has_many :items, Todolist.Items.Item
+    has_many :items, TodoList.Items.Item
 
     timestamps()
   end

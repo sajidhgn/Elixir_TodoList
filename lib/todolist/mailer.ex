@@ -1,3 +1,3 @@
-defmodule Todolist.Mailer do
-  use Swoosh.Mailer, otp_app: :todolist
+defmodule TodoList.Mailer do
+  use Swoosh.Mailer, otp_app: :TodoList
 end

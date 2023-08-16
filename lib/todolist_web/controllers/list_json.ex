@@ -1,5 +1,5 @@
-defmodule TodolistWeb.ListJSON do
-  alias Todolist.Lists.List
+defmodule TodoListWeb.ListJSON do
+  alias TodoList.Lists.List
 
   @doc """
   Renders a list of lists.

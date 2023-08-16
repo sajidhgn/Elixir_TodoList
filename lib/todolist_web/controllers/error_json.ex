@@ -1,4 +1,4 @@
-defmodule TodolistWeb.ErrorJSON do
+defmodule TodoListWeb.ErrorJSON do
   # If you want to customize a particular status code,
   # you may add your own clauses, such as:
   #

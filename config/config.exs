@@ -7,17 +7,17 @@
 # General application configuration
 import Config
 
-config :todolist,
-  ecto_repos: [Todolist.Repo]
+config :TodoList,
+  ecto_repos: [TodoList.Repo]
 
 # Configures the endpoint
-config :todolist, TodolistWeb.Endpoint,
+config :TodoList, TodoListWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [
-    formats: [html: TodolistWeb.ErrorHTML, json: TodolistWeb.ErrorJSON],
+    formats: [html: TodoListWeb.ErrorHTML, json: TodoListWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: Todolist.PubSub,
+  pubsub_server: TodoList.PubSub,
   live_view: [signing_salt: "45TMdfWc"]
 
 # Configures the mailer
@@ -27,7 +27,7 @@ config :todolist, TodolistWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :todolist, Todolist.Mailer, adapter: Swoosh.Adapters.Local
+config :TodoList, TodoList.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,

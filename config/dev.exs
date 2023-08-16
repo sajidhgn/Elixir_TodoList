@@ -1,7 +1,7 @@
 import Config
 
 # Configure your database
-config :todolist, Todolist.Repo,
+config :TodoList, TodoList.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
@@ -16,7 +16,7 @@ config :todolist, Todolist.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
-config :todolist, TodolistWeb.Endpoint,
+config :TodoList, TodoListWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -53,17 +53,17 @@ config :todolist, TodolistWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :todolist, TodolistWeb.Endpoint,
+config :TodoList, TodoListWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/todolist_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"lib/TodoList_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
 
 # Enable dev routes for dashboard and mailbox
-config :todolist, dev_routes: true
+config :TodoList, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

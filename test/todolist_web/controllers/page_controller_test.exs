@@ -1,5 +1,5 @@
-defmodule TodolistWeb.PageControllerTest do
-  use TodolistWeb.ConnCase
+defmodule TodoListWeb.PageControllerTest do
+  use TodoListWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")

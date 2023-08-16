@@ -1,12 +1,12 @@
-defmodule TodolistWeb do
+defmodule TodoListWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in your application as:
 
-      use TodolistWeb, :controller
-      use TodolistWeb, :html
+      use TodoListWeb, :controller
+      use TodoListWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -40,10 +40,10 @@ defmodule TodolistWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html, :json],
-        layouts: [html: TodolistWeb.Layouts]
+        layouts: [html: TodoListWeb.Layouts]
 
       import Plug.Conn
-      import TodolistWeb.Gettext
+      import TodoListWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -52,7 +52,7 @@ defmodule TodolistWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {TodolistWeb.Layouts, :app}
+        layout: {TodoListWeb.Layouts, :app}
 
       unquote(html_helpers())
     end
@@ -84,8 +84,8 @@ defmodule TodolistWeb do
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components and translation
-      import TodolistWeb.CoreComponents
-      import TodolistWeb.Gettext
+      import TodoListWeb.CoreComponents
+      import TodoListWeb.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
@@ -98,9 +98,9 @@ defmodule TodolistWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: TodolistWeb.Endpoint,
-        router: TodolistWeb.Router,
-        statics: TodolistWeb.static_paths()
+        endpoint: TodoListWeb.Endpoint,
+        router: TodoListWeb.Router,
+        statics: TodoListWeb.static_paths()
     end
   end
 
