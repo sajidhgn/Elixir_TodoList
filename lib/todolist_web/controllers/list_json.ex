@@ -15,6 +15,10 @@ defmodule TodoListWeb.ListJSON do
     %{data: data(list)}
   end
 
+  def show(%{error: error}) do
+    %{error: error}
+  end
+
   defp data(%List{} = list) do
     %{
       id: list.id,

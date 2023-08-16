@@ -28,6 +28,11 @@ defmodule TodoList.Lists do
     Repo.all(query)
   end
 
+  def get_by_archived(id) do
+    from(u in List, where: u.id == ^id, where: u.archived == false)
+    |> Repo.one()
+  end
+
   @doc """
   Gets a single list.
 

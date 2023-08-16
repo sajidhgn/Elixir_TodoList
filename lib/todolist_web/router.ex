@@ -27,6 +27,7 @@ defmodule TodoListWeb.Router do
       resources "/lists", ListController
 
       get "/archived-list/:status", ListController, :archived_list
+      put "/archived-status", ListController, :archived_status
   end
 
   # Other scopes may use custom stacks.
