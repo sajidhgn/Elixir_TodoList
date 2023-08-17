@@ -5,10 +5,9 @@ defmodule TodoList.Items do
 
   import Ecto.Query, warn: false
   alias TodoList.Repo
-  import Ecto.Query
+
 
   alias TodoList.Items.Item
-  alias TodoList.Lists.List
 
   @doc """
   Returns the list of items.
@@ -24,10 +23,10 @@ defmodule TodoList.Items do
   end
 
 
-  def update_archived_items(id) do
-    from( a in Item, preload: [:lists])
-    |> Repo.all()
-  end
+  # def update_archived_items(id) do
+  #   from( a in Item, preload: [:lists])
+  #   |> Repo.all()
+  # end
 
 
 
@@ -99,6 +98,7 @@ defmodule TodoList.Items do
   def delete_item(%Item{} = item) do
     Repo.delete(item)
   end
+
 
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking item changes.
