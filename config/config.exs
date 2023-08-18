@@ -29,6 +29,16 @@ config :TodoList, TodoListWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :TodoList, TodoList.Mailer, adapter: Swoosh.Adapters.Local
 
+config :TodoList, :phoenix_swagger,
+  swagger_files: %{
+    "priv/static/swagger.json" => [
+      router: TodoListWeb.Router,     # phoenix routes will be converted to swagger paths
+      endpoint: TodoListWeb.Endpoint  # (optional) endpoint config used to set host, port and https schemes.
+    ]
+  }
+
+config :phoenix_swagger, json_library: Jason # If you dont use Poison
+
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",

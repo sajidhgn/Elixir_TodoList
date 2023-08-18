@@ -1,6 +1,7 @@
 defmodule TodoListWeb.ListController do
   use TodoListWeb, :controller
 
+  use PhoenixSwagger
   alias TodoList.Lists
   alias TodoList.Lists.List
 
@@ -11,13 +12,29 @@ defmodule TodoListWeb.ListController do
     render(conn, :index, lists: lists)
   end
 
-  def create(conn, %{"list" => list_params}) do
+  
+
+  def create(conn, list_params) do
     with {:ok, %List{} = list} <- Lists.create_list(list_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", ~p"/api/lists/#{list}")
-      |> render(:show, list: list)
+      |> render(:show, list: list, message: "list created successfully")
     end
+  end
+
+  # Swagger Create Function
+  swagger_path :create do
+    post("/api/lists")
+    summary("List creation")
+    description("List creation")
+    produces("application/json")
+    # security([%{Bearer: []}])
+
+    parameters do
+      body(:body, Schema.ref(:CreateList), "List Params", required: true)
+    end
+    response(200, "Ok")
   end
 
   def show(conn, %{"id" => id}) do
@@ -30,11 +47,11 @@ defmodule TodoListWeb.ListController do
 
     case Lists.get_by_archived(list_params["id"]) do
       nil ->
-        render(conn, :show, error: "hi i am error")
+        render(conn, :show, error: "Please unarchive list")
 
       list ->
         with {:ok, %List{} = list} <- Lists.update_list(list, list_params) do
-          render(conn, :show, list: list)
+          render(conn, :show, list: list, message: "list status updated successfully")
         end
     end
   end
@@ -44,7 +61,7 @@ defmodule TodoListWeb.ListController do
     list = Lists.get_list!(id)
 
     with {:ok, %List{} = list} <- Lists.update_list(list, list_params) do
-      render(conn, :show, list: list)
+      render(conn, :show, list: list, message: "list updated successfully")
     end
   end
 
@@ -52,7 +69,7 @@ defmodule TodoListWeb.ListController do
     list = Lists.get_list!(id)
 
     with {:ok, %List{}} <- Lists.delete_list(list) do
-      send_resp(conn, :no_content, "")
+      render(conn, :delete, message: "list deleted successfully")
     end
   end
 
@@ -60,4 +77,36 @@ defmodule TodoListWeb.ListController do
     lists = Lists.archived_lists(status)
     render(conn, :index, lists: lists)
   end
+
+
+  def swagger_definitions do
+    %{
+      # TotalAbouts:
+      #   swagger_schema do
+      #     title("Abouts Us")
+      #     description("About me details")
+
+      #     example(%{})
+      #   end,
+        CreateList:
+        swagger_schema do
+          title("List Schema")
+          description("List Schema")
+
+          properties do
+
+            archived(:boolean, "archived", required: true)
+            title(:string, "title", required: true)
+          end
+
+          example(%{
+            title: "dummy title",
+            archived: true,
+
+          })
+        end
+    }
+  end
+
+
 end

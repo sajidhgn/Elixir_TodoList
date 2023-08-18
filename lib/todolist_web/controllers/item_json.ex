@@ -11,12 +11,16 @@ defmodule TodoListWeb.ItemJSON do
   @doc """
   Renders a single item.
   """
-  def show(%{item: item}) do
-    %{data: data(item)}
+  def show(%{item: item, message: message}) do
+    %{data: data(item), message: message}
   end
 
   def show(%{error: error}) do
     %{error: error}
+  end
+
+  def delete(%{message: message}) do
+    %{message: message}
   end
 
   defp data(%Item{} = item) do

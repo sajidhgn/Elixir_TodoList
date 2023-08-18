@@ -11,12 +11,16 @@ defmodule TodoListWeb.ListJSON do
   @doc """
   Renders a single list.
   """
-  def show(%{list: list}) do
-    %{data: data(list)}
+  def show(%{list: list, message: message}) do
+    %{data: data(list), message: message}
   end
 
   def show(%{error: error}) do
     %{error: error}
+  end
+
+  def delete(%{message: message}) do
+    %{message: message}
   end
 
   defp data(%List{} = list) do

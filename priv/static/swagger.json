@@ -1,0 +1,88 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "CreateList": {
+      "description": "List Schema",
+      "example": {
+        "archived": true,
+        "title": "dummy title"
+      },
+      "properties": {
+        "archived": {
+          "description": "archived",
+          "type": "boolean"
+        },
+        "title": {
+          "description": "title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "archived"
+      ],
+      "title": "List Schema",
+      "type": "object"
+    }
+  },
+  "host": "localhost:4000",
+  "info": {
+    "contact": {
+      "email": "vladimir.gore@gmail.com",
+      "name": "Vladimir Gorej"
+    },
+    "description": "API Documentation for MyAPI v1",
+    "termsOfService": "Open for public",
+    "title": "MyAPI",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/lists": {
+      "post": {
+        "description": "List creation",
+        "operationId": "TodoListWeb.ListController.create",
+        "parameters": [
+          {
+            "description": "List Params",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateList"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          }
+        },
+        "summary": "List creation",
+        "tags": [
+          "List"
+        ]
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "description": "API Token must be provided via `Authorization: Bearer ` header",
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0"
+}

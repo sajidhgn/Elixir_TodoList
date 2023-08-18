@@ -30,6 +30,37 @@ defmodule TodoListWeb.Router do
       put "/archived-status", ListController, :archived_status
   end
 
+  scope "/api/swagger" do
+    forward "/", PhoenixSwagger.Plug.SwaggerUI, otp_app: :TodoList, swagger_file: "swagger.json"
+  end
+
+  def swagger_info do
+    %{
+      schemes: ["http", "https"],
+      info: %{
+        version: "1.0",
+        title: "MyAPI",
+        description: "API Documentation for MyAPI v1",
+        termsOfService: "Open for public",
+        contact: %{
+          name: "Vladimir Gorej",
+          email: "vladimir.gore@gmail.com"
+        }
+      },
+      securityDefinitions: %{
+        Bearer: %{
+          type: "apiKey",
+          name: "Authorization",
+          description:
+          "API Token must be provided via `Authorization: Bearer ` header",
+      in: "header"
+        }
+      },
+      consumes: ["application/json"],
+      produces: ["application/json"]
+    }
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", TodoListWeb do
   #   pipe_through :api

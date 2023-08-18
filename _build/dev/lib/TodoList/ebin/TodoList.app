@@ -7,7 +7,7 @@
                              phoenix_live_view,phoenix_live_dashboard,esbuild,
                              tailwind,swoosh,finch,telemetry_metrics,
                              telemetry_poller,gettext,jason,plug_cowboy,
-                             cors_plug]},
+                             cors_plug,phoenix_swagger,ex_json_schema]},
               {description,"TodoList"},
               {modules,['Elixir.TodoList','Elixir.TodoList.Application',
                         'Elixir.TodoList.Items','Elixir.TodoList.Items.Item',

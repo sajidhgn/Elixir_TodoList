@@ -1,8 +1,6 @@
 defmodule TodoListWeb.ItemController do
   use TodoListWeb, :controller
 
-  import Ecto
-
   alias TodoList.Repo
 
   alias TodoList.Items
@@ -23,7 +21,7 @@ defmodule TodoListWeb.ItemController do
       conn
       |> put_status(:created)
       |> put_resp_header("location", ~p"/api/items/#{item}")
-      |> render(:show, item: item)
+      |> render(:show, item: item, message: "Item created successfully")
     end
   end
 
@@ -39,11 +37,11 @@ defmodule TodoListWeb.ItemController do
 
     case list_archived?(data) do
       true ->
-        render(conn, :show, error: "please archived make false")
+        render(conn, :show, error: "please unarchive list")
 
       false ->
         with {:ok, %Item{} = item} <- Items.update_item(item, item_params) do
-          render(conn, :show, item: item)
+          render(conn, :show, item: item, message: "Item updated successfully")
         end
     end
   end
@@ -52,7 +50,7 @@ defmodule TodoListWeb.ItemController do
     item = Items.get_item!(id)
 
     with {:ok, %Item{}} <- Items.delete_item(item) do
-      send_resp(conn, :no_content, "")
+      render(conn, :delete, message: "Item deleted successfully")
     end
   end
 
