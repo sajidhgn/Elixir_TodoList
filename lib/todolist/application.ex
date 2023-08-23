@@ -17,15 +17,20 @@ defmodule TodoList.Application do
       # Start Finch
       {Finch, name: TodoList.Finch},
       # Start the Endpoint (http/https)
-      TodoListWeb.Endpoint
+      TodoListWeb.Endpoint,
       # Start a worker by calling: TodoList.Worker.start_link(arg)
       # {TodoList.Worker, arg}
+      {Oban, oban_config()}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: TodoList.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  defp oban_config do # Add this line
+    Application.fetch_env!(:TodoList, Oban)
   end
 
   # Tell Phoenix to update the endpoint configuration

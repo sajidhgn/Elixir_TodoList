@@ -1,5 +1,6 @@
 {application,mint,
-             [{applications,[kernel,stdlib,elixir,logger,ssl,hpax]},
+             [{optional_applications,[castore]},
+              {applications,[kernel,stdlib,elixir,logger,ssl,castore,hpax]},
               {description,"Small and composable HTTP client."},
               {modules,['Elixir.Mint.Application','Elixir.Mint.Core.Conn',
                         'Elixir.Mint.Core.Transport',

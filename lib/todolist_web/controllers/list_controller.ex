@@ -12,7 +12,7 @@ defmodule TodoListWeb.ListController do
     render(conn, :index, lists: lists)
   end
 
-  
+
 
   def create(conn, list_params) do
     with {:ok, %List{} = list} <- Lists.create_list(list_params) do
@@ -94,8 +94,7 @@ defmodule TodoListWeb.ListController do
           description("List Schema")
 
           properties do
-
-            archived(:boolean, "archived", required: true)
+              archived(:boolean, "archived", required: true)
             title(:string, "title", required: true)
           end
 

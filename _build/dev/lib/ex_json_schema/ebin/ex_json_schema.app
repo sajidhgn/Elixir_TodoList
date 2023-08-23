@@ -1,5 +1,6 @@
 {application,ex_json_schema,
-             [{applications,[kernel,stdlib,elixir]},
+             [{optional_applications,[]},
+              {applications,[kernel,stdlib,elixir]},
               {description,"A JSON Schema validator with full support for the draft 4 specification and zero dependencies."},
               {modules,['Elixir.ExJsonSchema','Elixir.ExJsonSchema.Schema',
                         'Elixir.ExJsonSchema.Schema.Draft4',

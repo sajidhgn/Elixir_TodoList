@@ -1,5 +1,7 @@
 {application,phoenix_ecto,
-             [{applications,[kernel,stdlib,elixir,logger,ecto,plug]},
+             [{optional_applications,[phoenix_html]},
+              {applications,[kernel,stdlib,elixir,logger,phoenix_html,ecto,
+                             plug]},
               {description,"Integration between Phoenix & Ecto"},
               {modules,['Elixir.Phoenix.Ecto',
                         'Elixir.Phoenix.Ecto.CheckRepoStatus',

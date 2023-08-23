@@ -52,7 +52,9 @@ defmodule TodoList.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:cors_plug, "~> 3.0"},
       {:phoenix_swagger, "~> 0.8"},
-      {:ex_json_schema, "~> 0.5"}
+      {:ex_json_schema, "~> 0.5"},
+      {:oban, "~> 2.0"},
+      {:timex, "~> 3.0"}
     ]
   end
 

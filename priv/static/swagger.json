@@ -1,7 +1,15 @@
 {
-  "consumes": [
-    "application/json"
-  ],
+  "info": {
+    "version": "1.0",
+    "description": "API Documentation for MyAPI v1",
+    "title": "MyAPI",
+    "termsOfService": "Open for public",
+    "contact": {
+      "name": "Vladimir Gorej",
+      "email": "vladimir.gore@gmail.com"
+    }
+  },
+  "host": "localhost:4000",
   "definitions": {
     "CreateList": {
       "description": "List Schema",
@@ -27,17 +35,10 @@
       "type": "object"
     }
   },
-  "host": "localhost:4000",
-  "info": {
-    "contact": {
-      "email": "vladimir.gore@gmail.com",
-      "name": "Vladimir Gorej"
-    },
-    "description": "API Documentation for MyAPI v1",
-    "termsOfService": "Open for public",
-    "title": "MyAPI",
-    "version": "1.0"
-  },
+  "schemes": [
+    "http",
+    "https"
+  ],
   "paths": {
     "/api/lists": {
       "post": {
@@ -69,20 +70,19 @@
       }
     }
   },
+  "swagger": "2.0",
   "produces": [
     "application/json"
   ],
-  "schemes": [
-    "http",
-    "https"
+  "consumes": [
+    "application/json"
   ],
   "securityDefinitions": {
     "Bearer": {
-      "description": "API Token must be provided via `Authorization: Bearer ` header",
       "in": "header",
       "name": "Authorization",
-      "type": "apiKey"
+      "type": "apiKey",
+      "description": "API Token must be provided via `Authorization: Bearer ` header"
     }
-  },
-  "swagger": "2.0"
+  }
 }

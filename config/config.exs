@@ -69,6 +69,19 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :TodoList, Oban,
+  repo: TodoList.Repo,
+  queues: [default: 50, mailers: 20, events: 50, low: 5],
+  plugins: [
+    Oban.Plugins.Pruner,
+    {Oban.Plugins.Cron,
+     crontab: [
+       {"* * * * *", TodoList.MinuteWorker},
+     ]}
+  ]
+
+
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

@@ -113,4 +113,13 @@ defmodule TodoList.Lists do
   def change_list(%List{} = list, attrs \\ %{}) do
     List.changeset(list, attrs)
   end
+
+  def archive_items_within_last_24_hours() do
+
+    timestamp_24_hours_ago = Timex.now() |> Timex.shift(hours: -24)
+
+    from(r in List, where: r.archived == false and r.updated_at > ^timestamp_24_hours_ago, select: r.archived)
+    |> Repo.update_all(set: [archived: true])
+
+  end
 end

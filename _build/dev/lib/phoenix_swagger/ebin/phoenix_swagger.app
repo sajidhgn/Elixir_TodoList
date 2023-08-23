@@ -1,5 +1,6 @@
 {application,phoenix_swagger,
-             [{applications,[kernel,stdlib,elixir,ex_json_schema,logger,plug]},
+             [{optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,ex_json_schema,logger,plug]},
               {description,"PhoenixSwagger is the library that provides swagger integration to the phoenix web framework."},
               {modules,['Elixir.Mix.Tasks.Compile.PhoenixSwagger',
                         'Elixir.Mix.Tasks.Phx.Swagger.Generate',

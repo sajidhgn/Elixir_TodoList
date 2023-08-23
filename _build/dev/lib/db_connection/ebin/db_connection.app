@@ -1,5 +1,6 @@
 {application,db_connection,
-             [{applications,[kernel,stdlib,elixir,logger,telemetry]},
+             [{optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger,telemetry]},
               {description,"Database connection behaviour for database transactions and connection pooling\n"},
               {modules,['Elixir.DBConnection','Elixir.DBConnection.App',
                         'Elixir.DBConnection.Backoff',

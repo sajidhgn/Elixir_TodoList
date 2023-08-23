@@ -1,5 +1,6 @@
 {application,file_system,
-             [{applications,[kernel,stdlib,elixir,logger]},
+             [{optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger]},
               {description,"A file system change watcher wrapper based on [fs](https://github.com/synrc/fs)"},
               {modules,['Elixir.FileSystem','Elixir.FileSystem.Backend',
                         'Elixir.FileSystem.Backends.FSInotify',

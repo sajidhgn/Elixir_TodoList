@@ -1,5 +1,6 @@
 {application,gettext,
-             [{applications,[kernel,stdlib,elixir,logger,expo]},
+             [{optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger,expo]},
               {description,"Internationalization and localization through gettext"},
               {modules,['Elixir.Gettext','Elixir.Gettext.Application',
                         'Elixir.Gettext.Backend','Elixir.Gettext.Compiler',

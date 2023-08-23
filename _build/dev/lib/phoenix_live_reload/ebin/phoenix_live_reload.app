@@ -1,5 +1,6 @@
 {application,phoenix_live_reload,
-             [{applications,[kernel,stdlib,elixir,logger,phoenix,file_system]},
+             [{optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger,phoenix,file_system]},
               {description,"Provides live-reload functionality for Phoenix"},
               {modules,['Elixir.Phoenix.LiveReloader',
                         'Elixir.Phoenix.LiveReloader.Application',
