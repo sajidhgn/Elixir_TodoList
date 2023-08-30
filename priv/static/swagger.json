@@ -11,6 +11,12 @@
   },
   "host": "localhost:4000",
   "definitions": {
+    "TotalLists": {
+      "description": "List details",
+      "example": {},
+      "title": "Lists",
+      "type": "object"
+    },
     "CreateList": {
       "description": "List Schema",
       "example": {
@@ -33,6 +39,84 @@
       ],
       "title": "List Schema",
       "type": "object"
+    },
+    "SingleList": {
+      "description": "List details",
+      "example": {},
+      "title": "Single List",
+      "type": "object"
+    },
+    "StatusUpdateList": {
+      "description": "Status update list details",
+      "example": {
+        "archived": true,
+        "id": "4c27de4f-ea2b-44bc-a871-b6f477b7417d",
+        "title": "najams"
+      },
+      "properties": {
+        "archived": {
+          "description": "archived",
+          "type": "boolean"
+        },
+        "id": {
+          "description": "id",
+          "type": "string"
+        },
+        "title": {
+          "description": "title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "id"
+      ],
+      "title": "Status update List",
+      "type": "object"
+    },
+    "UpdateList": {
+      "description": "update list details",
+      "example": {
+        "archived": true,
+        "id": "4c27de4f-ea2b-44bc-a871-b6f477b7417d",
+        "title": "james"
+      },
+      "properties": {
+        "archived": {
+          "description": "archived",
+          "type": "boolean"
+        },
+        "id": {
+          "description": "id",
+          "type": "string"
+        },
+        "title": {
+          "description": "title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "archived",
+        "title",
+        "id"
+      ],
+      "title": "update List",
+      "type": "object"
+    },
+    "DeleteList": {
+      "description": "Delete list details",
+      "example": {},
+      "properties": {
+        "id": {
+          "description": "id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Delete List",
+      "type": "object"
     }
   },
   "schemes": [
@@ -40,7 +124,56 @@
     "https"
   ],
   "paths": {
+    "/api/archived-status": {
+      "put": {
+        "description": "Update list status",
+        "operationId": "TodoListWeb.ListController.archived_status",
+        "parameters": [
+          {
+            "description": "List Params",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatusUpdateList"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          }
+        },
+        "summary": "Update list status",
+        "tags": [
+          "List"
+        ]
+      }
+    },
     "/api/lists": {
+      "get": {
+        "description": "Get total lists",
+        "operationId": "TodoListWeb.ListController.index",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/TotalLists"
+            }
+          }
+        },
+        "summary": "Get total lists",
+        "tags": [
+          "List"
+        ]
+      },
       "post": {
         "description": "List creation",
         "operationId": "TodoListWeb.ListController.create",
@@ -68,13 +201,102 @@
           "List"
         ]
       }
+    },
+    "/api/lists/{id}": {
+      "delete": {
+        "description": "Get single list",
+        "operationId": "TodoListWeb.ListController.delete",
+        "parameters": [
+          {
+            "description": "List Id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/DeleteList"
+            }
+          }
+        },
+        "summary": "Get single list",
+        "tags": [
+          "List"
+        ]
+      },
+      "get": {
+        "description": "Get single list",
+        "operationId": "TodoListWeb.ListController.show",
+        "parameters": [
+          {
+            "description": "List Id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SingleList"
+            }
+          }
+        },
+        "summary": "Get single list",
+        "tags": [
+          "List"
+        ]
+      },
+      "put": {
+        "description": "Update list",
+        "operationId": "TodoListWeb.ListController.update",
+        "parameters": [
+          {
+            "description": "List Id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "List Params",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateList"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          }
+        },
+        "summary": "Update list ",
+        "tags": [
+          "List"
+        ]
+      }
     }
   },
   "swagger": "2.0",
   "produces": [
-    "application/json"
-  ],
-  "consumes": [
     "application/json"
   ],
   "securityDefinitions": {
@@ -84,5 +306,8 @@
       "type": "apiKey",
       "description": "API Token must be provided via `Authorization: Bearer ` header"
     }
-  }
+  },
+  "consumes": [
+    "application/json"
+  ]
 }

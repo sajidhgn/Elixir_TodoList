@@ -71,7 +71,7 @@ config :phoenix, :json_library, Jason
 
 config :TodoList, Oban,
   repo: TodoList.Repo,
-  queues: [default: 50, mailers: 20, events: 50, low: 5],
+  queues: [default: 1000000, mailers: 20, events: 50, low: 5],
   plugins: [
     Oban.Plugins.Pruner,
     {Oban.Plugins.Cron,

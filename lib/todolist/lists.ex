@@ -118,8 +118,8 @@ defmodule TodoList.Lists do
 
     timestamp_24_hours_ago = Timex.now() |> Timex.shift(hours: -24)
 
-    from(r in List, where: r.archived == false and r.updated_at > ^timestamp_24_hours_ago, select: r.archived)
-    |> Repo.update_all(set: [archived: true])
+    from(r in List, where: r.archived == true and r.updated_at > ^timestamp_24_hours_ago, select: r.archived)
+    |> Repo.update_all(set: [archived: false])
 
   end
 end
