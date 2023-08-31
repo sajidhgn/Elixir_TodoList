@@ -25,7 +25,6 @@ defmodule TodoListWeb.Router do
 
      resources "/items", ItemController
       resources "/lists", ListController
-
       get "/archived-list/:status", ListController, :archived_list
       put "/archived-status", ListController, :archived_status
   end
@@ -39,12 +38,12 @@ defmodule TodoListWeb.Router do
       schemes: ["http", "https"],
       info: %{
         version: "1.0",
-        title: "MyAPI",
-        description: "API Documentation for MyAPI v1",
+        title: "TodoList Elixir Phoenix",
+        description: "API Documentation for TodoList API v1",
         termsOfService: "Open for public",
         contact: %{
-          name: "Vladimir Gorej",
-          email: "vladimir.gore@gmail.com"
+          name: "Sajid Ali",
+          email: "sajidhgn@gmail.com"
         }
       },
       securityDefinitions: %{
