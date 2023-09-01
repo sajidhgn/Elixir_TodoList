@@ -11,67 +11,39 @@
   },
   "host": "localhost:4000",
   "definitions": {
-    "TotalLists": {
-      "description": "List details",
+    "TotalItems": {
+      "description": "Items details",
       "example": {},
-      "title": "Lists",
+      "title": "Items",
       "type": "object"
     },
-    "CreateList": {
+    "CreateItem": {
       "description": "List Schema",
       "example": {
-        "archived": true,
-        "title": "dummy title"
+        "completed": true,
+        "content": "dummy content",
+        "list_id": "sdfgdfgzdfgsdfgsdfgsdfg"
       },
       "properties": {
-        "archived": {
-          "description": "archived",
+        "completed": {
+          "description": "completed",
           "type": "boolean"
         },
-        "title": {
-          "description": "title",
+        "content": {
+          "description": "content",
           "type": "string"
+        },
+        "list_id": {
+          "description": "list_id",
+          "type": "boolean"
         }
       },
       "required": [
-        "title",
-        "archived"
+        "content",
+        "completed",
+        "list_id"
       ],
       "title": "List Schema",
-      "type": "object"
-    },
-    "SingleList": {
-      "description": "List details",
-      "example": {},
-      "title": "Single List",
-      "type": "object"
-    },
-    "StatusUpdateList": {
-      "description": "Status update list details",
-      "example": {
-        "archived": true,
-        "id": "4c27de4f-ea2b-44bc-a871-b6f477b7417d",
-        "title": "najams"
-      },
-      "properties": {
-        "archived": {
-          "description": "archived",
-          "type": "boolean"
-        },
-        "id": {
-          "description": "id",
-          "type": "string"
-        },
-        "title": {
-          "description": "title",
-          "type": "string"
-        }
-      },
-      "required": [
-        "title",
-        "id"
-      ],
-      "title": "Status update List",
       "type": "object"
     },
     "UpdateList": {
@@ -103,6 +75,18 @@
       "title": "update List",
       "type": "object"
     },
+    "SingleList": {
+      "description": "List details",
+      "example": {},
+      "title": "Single List",
+      "type": "object"
+    },
+    "TotalLists": {
+      "description": "List details",
+      "example": {},
+      "title": "Lists",
+      "type": "object"
+    },
     "DeleteList": {
       "description": "Delete list details",
       "example": {},
@@ -116,6 +100,57 @@
         "id"
       ],
       "title": "Delete List",
+      "type": "object"
+    },
+    "CreateList": {
+      "description": "List Schema",
+      "example": {
+        "archived": true,
+        "title": "dummy title"
+      },
+      "properties": {
+        "archived": {
+          "description": "archived",
+          "type": "boolean"
+        },
+        "title": {
+          "description": "title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "archived"
+      ],
+      "title": "List Schema",
+      "type": "object"
+    },
+    "StatusUpdateList": {
+      "description": "Status update list details",
+      "example": {
+        "archived": true,
+        "id": "4c27de4f-ea2b-44bc-a871-b6f477b7417d",
+        "title": "najams"
+      },
+      "properties": {
+        "archived": {
+          "description": "archived",
+          "type": "boolean"
+        },
+        "id": {
+          "description": "id",
+          "type": "string"
+        },
+        "title": {
+          "description": "title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "id"
+      ],
+      "title": "Status update List",
       "type": "object"
     }
   },
@@ -150,6 +185,55 @@
         "summary": "Update list status",
         "tags": [
           "List"
+        ]
+      }
+    },
+    "/api/items": {
+      "get": {
+        "description": "Get total items",
+        "operationId": "TodoListWeb.ItemController.index",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/TotalItems"
+            }
+          }
+        },
+        "summary": "Get total items",
+        "tags": [
+          "Item"
+        ]
+      },
+      "post": {
+        "description": "items creation",
+        "operationId": "TodoListWeb.ItemController.create",
+        "parameters": [
+          {
+            "description": "items Params",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateItem"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          }
+        },
+        "summary": "items creation",
+        "tags": [
+          "Item"
         ]
       }
     },
@@ -299,6 +383,9 @@
   "produces": [
     "application/json"
   ],
+  "consumes": [
+    "application/json"
+  ],
   "securityDefinitions": {
     "Bearer": {
       "in": "header",
@@ -306,8 +393,5 @@
       "type": "apiKey",
       "description": "API Token must be provided via `Authorization: Bearer ` header"
     }
-  },
-  "consumes": [
-    "application/json"
-  ]
+  }
 }
