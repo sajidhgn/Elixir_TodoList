@@ -53,6 +53,19 @@ defmodule TodoListWeb.ItemController do
     render(conn, :show, item: item)
   end
 
+  # Swagger Edit with ID
+  swagger_path :show do
+    get("/api/items/{id}")
+    summary("Get single item")
+    description("Get single litemist")
+    produces("application/json")
+    # security([%{Bearer: []}])
+    parameters do
+      id :path, :string, "Item Id", required: true
+    end
+    response(200, "Ok", Schema.ref(:SingleItem))
+  end
+
   def update(conn, %{"id" => id, "item" => item_params}) do
 
     item = Items.get_item!(id)
@@ -68,6 +81,19 @@ defmodule TodoListWeb.ItemController do
         end
     end
   end
+  # Swagger update list
+  swagger_path :update do
+    put("/api/items/{id}")
+    summary("Update item ")
+    description("Update item")
+    produces("application/json")
+    # security([%{Bearer: []}])
+    parameters do
+      id :path, :string, "Item Id", required: true
+      body(:body, Schema.ref(:UpdateItem), "Item Params", required: true)
+    end
+    response(200, "Ok")
+  end
 
   def delete(conn, %{"id" => id}) do
     item = Items.get_item!(id)
@@ -75,6 +101,19 @@ defmodule TodoListWeb.ItemController do
     with {:ok, %Item{}} <- Items.delete_item(item) do
       render(conn, :delete, message: "Item deleted successfully")
     end
+  end
+
+   # Swagger Edit with ID
+   swagger_path :delete do
+    PhoenixSwagger.Path.delete("/api/items/{id}")
+    summary("Delete single item")
+    description("Delete single item")
+    produces("application/json")
+    # security([%{Bearer: []}])
+    parameters do
+      id :path, :string, "item Id", required: true
+    end
+    response(200, "Ok", Schema.ref(:DeleteList))
   end
 
   defp list_archived?(%{list: %{archived: true}}), do: true
@@ -91,8 +130,8 @@ defmodule TodoListWeb.ItemController do
       end,
       CreateItem:
         swagger_schema do
-          title("List Schema")
-          description("List Schema")
+          title("item Schema")
+          description("item Schema")
 
           properties do
               list_id(:boolean, "list_id", required: true)
@@ -106,58 +145,42 @@ defmodule TodoListWeb.ItemController do
 
           })
         end,
-      #   SingleList:
-      # swagger_schema do
-      #   title("Single List")
-      #   description("List details")
+        SingleItem:
+      swagger_schema do
+        title("Single item")
+        description("item details")
 
-      #   example(%{})
-      # end,
-      # StatusUpdateList:
-      # swagger_schema do
-      #   title("Status update List")
-      #   description("Status update list details")
+        example(%{})
+      end,
+      UpdateItem:
+      swagger_schema do
+        title("update item")
+        description("update item details")
 
-      #   properties do
-      #     id(:string, "id", required: true)
-      #   title(:string, "title", required: true)
-      #   archived(:boolean, "archived", required: false)
-      # end
+        properties do
+          id(:string, "id", required: true)
+        completed(:boolean, "completed", required: true)
+        list_id(:string, "list_id", required: true)
+      end
+        example(%{
+          list_id: "4c27de4f-ea2b-44bc-a871-b6f477b7417d",
+          completed: true,
+          content: "dummy content",
+          id: "4c27de4f-ea2b-44bc-a871-b6f477b7417d"
 
-      #   example(%{
-      #     archived: true,
-      #           title: "najams",
-      #           id: "4c27de4f-ea2b-44bc-a871-b6f477b7417d"
-      #   })
-      # end,
-      # UpdateList:
-      # swagger_schema do
-      #   title("update List")
-      #   description("update list details")
+        })
+      end,
+      DeleteItem:
+      swagger_schema do
+        title("Delete item")
+        description("Delete item details")
 
-      #   properties do
-      #     id(:string, "id", required: true)
-      #   title(:string, "title", required: true)
-      #   archived(:boolean, "archived", required: true)
-      # end
-      #   example(%{
-      #           archived: true,
-      #           title: "james",
-      #           id: "4c27de4f-ea2b-44bc-a871-b6f477b7417d"
+        properties do
+          id(:string, "id", required: true)
+      end
 
-      #   })
-      # end,
-      # DeleteList:
-      # swagger_schema do
-      #   title("Delete List")
-      #   description("Delete list details")
-
-      #   properties do
-      #     id(:string, "id", required: true)
-      # end
-
-      #   example(%{})
-      # end,
+        example(%{})
+      end,
     }
   end
 end

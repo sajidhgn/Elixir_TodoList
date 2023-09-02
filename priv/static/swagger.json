@@ -1,12 +1,12 @@
 {
   "info": {
     "version": "1.0",
-    "description": "API Documentation for MyAPI v1",
-    "title": "MyAPI",
+    "description": "API Documentation for TodoList API v1",
+    "title": "TodoList Elixir Phoenix",
     "termsOfService": "Open for public",
     "contact": {
-      "name": "Vladimir Gorej",
-      "email": "vladimir.gore@gmail.com"
+      "name": "Sajid Ali",
+      "email": "sajidhgn@gmail.com"
     }
   },
   "host": "localhost:4000",
@@ -18,7 +18,7 @@
       "type": "object"
     },
     "CreateItem": {
-      "description": "List Schema",
+      "description": "item Schema",
       "example": {
         "completed": true,
         "content": "dummy content",
@@ -43,7 +43,73 @@
         "completed",
         "list_id"
       ],
-      "title": "List Schema",
+      "title": "item Schema",
+      "type": "object"
+    },
+    "SingleItem": {
+      "description": "item details",
+      "example": {},
+      "title": "Single item",
+      "type": "object"
+    },
+    "UpdateItem": {
+      "description": "update item details",
+      "example": {
+        "completed": true,
+        "content": "dummy content",
+        "id": "4c27de4f-ea2b-44bc-a871-b6f477b7417d",
+        "list_id": "4c27de4f-ea2b-44bc-a871-b6f477b7417d"
+      },
+      "properties": {
+        "completed": {
+          "description": "completed",
+          "type": "boolean"
+        },
+        "id": {
+          "description": "id",
+          "type": "string"
+        },
+        "list_id": {
+          "description": "list_id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "list_id",
+        "completed",
+        "id"
+      ],
+      "title": "update item",
+      "type": "object"
+    },
+    "DeleteList": {
+      "description": "Delete list details",
+      "example": {},
+      "properties": {
+        "id": {
+          "description": "id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Delete List",
+      "type": "object"
+    },
+    "DeleteItem": {
+      "description": "Delete item details",
+      "example": {},
+      "properties": {
+        "id": {
+          "description": "id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Delete item",
       "type": "object"
     },
     "UpdateList": {
@@ -85,21 +151,6 @@
       "description": "List details",
       "example": {},
       "title": "Lists",
-      "type": "object"
-    },
-    "DeleteList": {
-      "description": "Delete list details",
-      "example": {},
-      "properties": {
-        "id": {
-          "description": "id",
-          "type": "string"
-        }
-      },
-      "required": [
-        "id"
-      ],
-      "title": "Delete List",
       "type": "object"
     },
     "CreateList": {
@@ -232,6 +283,98 @@
           }
         },
         "summary": "items creation",
+        "tags": [
+          "Item"
+        ]
+      }
+    },
+    "/api/items/{id}": {
+      "delete": {
+        "description": "Delete single item",
+        "operationId": "TodoListWeb.ItemController.delete",
+        "parameters": [
+          {
+            "description": "item Id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/DeleteList"
+            }
+          }
+        },
+        "summary": "Delete single item",
+        "tags": [
+          "Item"
+        ]
+      },
+      "get": {
+        "description": "Get single litemist",
+        "operationId": "TodoListWeb.ItemController.show",
+        "parameters": [
+          {
+            "description": "Item Id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SingleItem"
+            }
+          }
+        },
+        "summary": "Get single item",
+        "tags": [
+          "Item"
+        ]
+      },
+      "put": {
+        "description": "Update item",
+        "operationId": "TodoListWeb.ItemController.update",
+        "parameters": [
+          {
+            "description": "Item Id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Item Params",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateItem"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          }
+        },
+        "summary": "Update item ",
         "tags": [
           "Item"
         ]
