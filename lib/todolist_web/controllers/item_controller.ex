@@ -13,8 +13,7 @@ defmodule TodoListWeb.ItemController do
 
     render(conn, :index, items: items)
   end
-
-   # Swagger List Function
+   # Swagger items Function
    swagger_path :index do
     get("/api/items")
     summary("Get total items")
@@ -81,7 +80,7 @@ defmodule TodoListWeb.ItemController do
         end
     end
   end
-  # Swagger update list
+  # Swagger update items
   swagger_path :update do
     put("/api/items/{id}")
     summary("Update item ")
